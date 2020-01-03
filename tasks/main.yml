@@ -2,7 +2,7 @@
 - name: Check Cloud
   shell : |
     if [ -f "/etc/waagent.conf" ];then echo "azure";fi
-    if [ -f "/usr/local/aegis/aegis_client" ];then echo "alicloud";fi
+    if [ -d "/usr/local/aegis" ];then echo "alicloud";fi
     if [ -f "/snap/bin/amazon-ssm-agent.ssm-cli" ];then echo "aws";fi
     if [ -f "/usr/bin/amazon-ssm-agent" ];then echo "aws";fi
   register: cloud
