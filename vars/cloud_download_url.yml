@@ -4,5 +4,5 @@ php_getcomposer_url: https://libs.websoft9.com/apps/composer/composer.phar
 redis_download_url: https://libs.websoft9.com/apps/redis
 
 phpmyadmin_download_url:
-  '1': "https://libs.websoft9.com/apps/phpmyadmin/phpMyAdmin-4.0.10.20-all-languages.zip"
-  '2': "https://libs.websoft9.com/apps/phpmyadmin/phpMyAdmin-4.9.1-all-languages.zip"
+  'old': "https://libs.websoft9.com/apps/phpmyadmin/phpMyAdmin-4.0.10.20-all-languages.zip"
+  'new': "https://libs.websoft9.com/apps/phpmyadmin/phpMyAdmin-4.9.1-all-languages.zip"
