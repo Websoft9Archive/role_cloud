@@ -2,3 +2,7 @@
 
 php_getcomposer_url: https://libs.websoft9.com/apps/composer/composer.phar
 redis_download_url: https://libs.websoft9.com/apps/redis
+
+phpmyadmin_download_url:
+  '4.0': "https://files.phpmyadmin.net/phpMyAdmin/4.0.10.20/phpMyAdmin-4.0.10.20-all-languages.zip"
+  '4.9': "https://files.phpmyadmin.net/phpMyAdmin/4.9.1/phpMyAdmin-4.9.1-all-languages.zip"
