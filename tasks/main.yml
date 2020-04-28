@@ -62,3 +62,16 @@
       state: started
       enabled: yes
   when: cloud.stdout == 'aws'
+  
+# install cloud agent
+- block:
+  - name: Install Aliyun Agent
+    shell: wget "https://aegis.alicdn.com/download/install/2.0/linux/AliAqsInstall_64.sh" && chmod +x AliAqsInstall_64.sh && ./AliAqsInstall_64.sh sJmepE
+    when: cloud.stdout == 'alicloud'
+
+  - name: Install HUAWEICLOUD Agent
+    shell: wget https://telescope-ap-southeast-1.obs.ap-southeast-1.myhuaweicloud.com/scripts/agentBatchPackage.sh && chmod 755 agentBatchPackage.sh && ./agentBatchPackage.sh
+    args:
+      chdir: /usr/local
+    when: cloud.stdout == 'huawei'
+  when: cloud_agent
