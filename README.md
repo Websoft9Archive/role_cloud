@@ -22,7 +22,11 @@ Ansible Role: Cloud
 
 ## Variables
 
-暂无
+本 Role 主要变量以及使用方法如下：
+
+| **Items**      | **Details** | **Format**  | **是否初始化** |
+| ------------------| ------------------|-----|-----|
+| redis_version | [ 2.8,3.0,3.2,4.0,5.0,stable ] | 字符串 | 否 |
 
 
 ## Example
