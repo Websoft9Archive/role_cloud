@@ -66,8 +66,16 @@
 # install cloud agent
 - block:
   - name: Install Aliyun Agent
-    shell: wget "https://aegis.alicdn.com/download/install/2.0/linux/AliAqsInstall_64.sh" && chmod +x AliAqsInstall_64.sh && ./AliAqsInstall_64.sh sJmepE
+    shell: |
+      wget "https://aegis.alicdn.com/download/install/2.0/linux/AliAqsInstall_64.sh" && chmod +x AliAqsInstall_64.sh && ./AliAqsInstall_64.sh sJmepE
+      wget "https://aliyun-client-assist.oss-accelerate.aliyuncs.com/linux/aliyun_assist_latest.rpm"
+      rpm -ivh --force aliyun_assist_latest.rpm
+      #wget "https://aliyun-client-assist.oss-accelerate.aliyuncs.com/linux/aliyun_assist_latest.deb"
+      #dpkg -r aliyun-assist
+      systemctl restart aliyun.service
     when: cloud.stdout == 'alicloud'
+    
+  
 
   - name: Install HUAWEICLOUD Agent
     shell: wget https://telescope-ap-southeast-1.obs.ap-southeast-1.myhuaweicloud.com/scripts/agentBatchPackage.sh && chmod 755 agentBatchPackage.sh && ./agentBatchPackage.sh
