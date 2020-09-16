@@ -42,6 +42,12 @@
       regexp: 'ResourceDisk.SwapSizeMB=0'
       line: "ResourceDisk.SwapSizeMB=2048"
       state: present
+      
+  - name: Install not root user
+    shell: |
+      sudo sed -i "s/<allow_any>no<\/allow_any>/<allow_any>yes<\/allow_any>/g" /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy
+      sudo sed -i "s/<allow_inactive>no<\/allow_inactive>/<allow_inactive>yes<\/allow_inactive>/g" /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy
+      sudo sed -i "s/<allow_active>no<\/allow_active>/<allow_active>yes<\/allow_active>/g" /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy
   when: cloud.stdout == 'azure'
 
 - block:
@@ -61,6 +67,12 @@
       name: ec2-instance-connect
       state: started
       enabled: yes
+      
+  - name: Install not root user
+    shell: |
+      sudo sed -i "s/<allow_any>no<\/allow_any>/<allow_any>yes<\/allow_any>/g" /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy
+      sudo sed -i "s/<allow_inactive>no<\/allow_inactive>/<allow_inactive>yes<\/allow_inactive>/g" /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy
+      sudo sed -i "s/<allow_active>no<\/allow_active>/<allow_active>yes<\/allow_active>/g" /usr/share/polkit-1/actions/org.freedesktop.systemd1.policy
   when: cloud.stdout == 'aws'
   
 # install cloud agent
