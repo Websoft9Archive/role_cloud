@@ -7,7 +7,9 @@
     if [ -f "/usr/bin/amazon-ssm-agent" ];then echo "aws";fi
     if [ -d "/CloudrResetPwdAgent" ];then echo "huaiwei";fi
   register: cloud
-
+  
+- debug:
+    msg: "Cloud platform is {{ cloud.stdout}}"
     
 - block:
   - name: Create swap Space
