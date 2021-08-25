@@ -32,10 +32,11 @@
 
 - block:
   - name: Create swap for Azure
-    copy: 
-      src: create_swapfile.sh 
-      dest: /var/lib/cloud/scripts/per-boot/create_swapfile.sh
-      mode: '0777'
+    copy: src=create_swapfile.sh dest=/var/lib/cloud/scripts/per-boot/create_swapfile.sh
+    
+  - name: Add x to create_swapfile
+    shell: |
+      chmod +x /var/lib/cloud/scripts/per-boot/create_swapfile.sh
   when: cloud.stdout == 'azure'
 
 - block:
