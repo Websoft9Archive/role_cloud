@@ -31,19 +31,8 @@
   when: (ansible_swaptotal_mb == 0) and (cloud.stdout != 'azure')
 
 - block:
-  - name: ResourceDisk EnableSwap
-    lineinfile:
-      dest: /etc/waagent.conf
-      regexp: 'ResourceDisk.EnableSwap=n'
-      line: "ResourceDisk.EnableSwap=y"
-      state: present
-
-  - name: ResourceDisk SwapSizeMB
-    lineinfile:
-      dest: /etc/waagent.conf
-      regexp: 'ResourceDisk.SwapSizeMB=0'
-      line: "ResourceDisk.SwapSizeMB=2048"
-      state: present
+  - name: Create swap for Azure
+    copy: src=create_swapfile.sh dest=/var/lib/cloud/scripts/per-boot/create_swapfile.sh
   when: cloud.stdout == 'azure'
 
 - block:
