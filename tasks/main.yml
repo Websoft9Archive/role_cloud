@@ -35,7 +35,7 @@
     copy: 
       src: create_swapfile.sh 
       dest: /var/lib/cloud/scripts/per-boot/create_swapfile.sh
-      mode: '0644'
+      mode: '0777'
   when: cloud.stdout == 'azure'
 
 - block:
