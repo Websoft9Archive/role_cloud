@@ -31,11 +31,37 @@
   when: (ansible_swaptotal_mb == 0) and (cloud.stdout != 'azure')
 
 - block:
-  - name: Create swap for Azure
-    copy: src=create_swapfile.sh dest=/var/lib/cloud/scripts/per-boot/create_swapfile.sh
+  - name: Change ubuntu service name
+    shell: ln -sf /usr/lib/systemd/system/walinuxagent.service /usr/lib/systemd/system/waagent.service
+    when: ansible_os_family == 'Debian'
+    
+  - name: ResourceDisk EnableSwap
+    lineinfile:
+      dest: /etc/waagent.conf
+      regexp: 'ResourceDisk.Format=n'
+      line: "ResourceDisk.Format=y"
+      state: present
 
-  - name: Add x to create_swapfile
-    shell: chmod +x /var/lib/cloud/scripts/per-boot/create_swapfile.sh
+  - name: ResourceDisk EnableSwap
+    lineinfile:
+      dest: /etc/waagent.conf
+      regexp: 'ResourceDisk.EnableSwap=n'
+      line: "ResourceDisk.EnableSwap=y"
+      state: present
+
+  - name: ResourceDisk SwapSizeMB
+    lineinfile:
+      dest: /etc/waagent.conf
+      regexp: 'ResourceDisk.SwapSizeMB=0'
+      line: "ResourceDisk.SwapSizeMB=4096"
+      state: present
+
+  - name: Restart waagnet
+    service:
+      name: waagent
+      state: restart
+      enable: yes
+
   when: cloud.stdout == 'azure'
 
 - block:
