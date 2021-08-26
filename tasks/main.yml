@@ -32,7 +32,9 @@
 
 - block:
   - name: Change ubuntu service name
-    shell: ln -sf /usr/lib/systemd/system/walinuxagent.service /usr/lib/systemd/system/waagent.service
+    shell: |
+      ln -sf /usr/lib/systemd/system/walinuxagent.service /usr/lib/systemd/system/waagent.service
+      systemctl daemon-reload
     when: ansible_os_family == 'Debian'
     
   - name: ResourceDisk EnableSwap
