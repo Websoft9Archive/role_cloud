@@ -59,8 +59,8 @@
   - name: Restart waagnet
     service:
       name: waagent
-      state: restart
-      enable: yes
+      state: restarted
+      enabled: yes
 
   when: cloud.stdout == 'azure'
 
