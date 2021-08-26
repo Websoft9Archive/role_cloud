@@ -37,6 +37,7 @@
   - name: Add x to create_swapfile
     shell: |
       chmod +x /var/lib/cloud/scripts/per-boot/create_swapfile.sh
+      bash /var/lib/cloud/scripts/per-boot/create_swapfile.sh
   when: cloud.stdout == 'azure'
 
 - block:
