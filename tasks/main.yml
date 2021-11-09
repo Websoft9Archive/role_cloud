@@ -80,7 +80,7 @@
   
   - name: Start ec2-instance-connect
     service:
-      name: ec2-instance-connect
+      name: ec2-instance-connect-harvest-hostkeys
       state: started
       enabled: yes
   when: cloud.stdout == 'aws'
