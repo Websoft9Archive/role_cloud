@@ -80,10 +80,10 @@
     
   - name: Start ec2-instance-connect
     service:
-      name: ec2-instance-connect-harvest
+      name: ec2-instance-connect
       state: started
       enabled: yes
-  when: ansible_os_family == 'Debian'
+    when: ansible_os_family == 'Debian'
   
   - name: Start ec2-instance-connect-harvest-hostkeys
     service:
