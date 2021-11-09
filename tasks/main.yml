@@ -77,12 +77,20 @@
     yum:
       name: ec2-instance-connect
     when: ansible_os_family == 'RedHat'
-  
+    
   - name: Start ec2-instance-connect
+    service:
+      name: ec2-instance-connect-harvest
+      state: started
+      enabled: yes
+  when: ansible_os_family == 'Debian'
+  
+  - name: Start ec2-instance-connect-harvest-hostkeys
     service:
       name: ec2-instance-connect-harvest-hostkeys
       state: started
       enabled: yes
+    when: ansible_os_family == 'RedHat'
   when: cloud.stdout == 'aws'
   
 # install cloud agent
