@@ -83,14 +83,8 @@
       name: ec2-instance-connect
       state: started
       enabled: yes
-    when: ansible_os_family == 'Debian'
-  
-  - name: Start ec2-instance-connect-harvest-hostkeys
-    service:
-      name: ec2-instance-connect-harvest-hostkeys
-      state: started
-      enabled: yes
-    when: ansible_os_family == 'RedHat'
+    failed_when: False
+    
   when: cloud.stdout == 'aws'
   
 # install cloud agent
